@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 nov 2022 om 08:32
+-- Gegenereerd op: 18 nov 2022 om 09:04
 -- Serverversie: 10.4.25-MariaDB
 -- PHP-versie: 8.1.10
 
@@ -88,53 +88,6 @@ INSERT INTO `dish` (`id`, `kitchen_id`, `type_id`, `user_id`, `date_added`, `tit
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `dish_info`
---
-
-CREATE TABLE `dish_info` (
-  `id` int(11) NOT NULL,
-  `record_type` enum('C','R','F','P') NOT NULL,
-  `dish_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `nummeric_field` int(11) DEFAULT NULL,
-  `text_field` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Gegevens worden geëxporteerd voor tabel `dish_info`
---
-
-INSERT INTO `dish_info` (`id`, `record_type`, `dish_id`, `user_id`, `date`, `nummeric_field`, `text_field`) VALUES
-(1, 'P', 1, NULL, '2022-11-17 14:28:57', 1, 'Preheat oven to 400°.'),
-(2, 'P', 1, NULL, '2022-11-17 14:29:32', 2, 'Unroll crust dough onto a baking sheet coated with cooking spray; pat into a 13 x 11-inch rectangle. Bake at 400° for 8 minutes. Remove crust from oven, and brush with 1/2 teaspoon oil. Rub crust with cut sides of garlic.'),
-(3, 'P', 1, NULL, '2022-11-17 14:29:57', 3, 'Arrange tomato slices on crust, leaving a 1/2-inch border; sprinkle evenly with cheese. Bake at 400° for 12 minutes or until cheese melts and crust is golden.'),
-(4, 'P', 1, NULL, '2022-11-17 14:30:36', 4, 'Combine 1/2 teaspoon oil and vinegar, stirring with a whisk.'),
-(5, 'P', 1, NULL, '2022-11-17 14:31:02', 5, 'Sprinkle pizza evenly with sliced basil, salt, and pepper. Drizzle the vinegar mixture evenly over the pizza. Cut pizza into 8 pieces.'),
-(6, 'C', 1, 1, '2022-11-17 15:41:44', NULL, 'Wat een lekker recept (heb het zelf geschreven)'),
-(7, 'C', 1, 2, '2022-11-17 15:45:13', NULL, 'Gadverdamme!!! EWW'),
-(8, 'R', 1, 2, '2022-11-17 15:45:32', 1, NULL),
-(9, 'R', 1, 1, '2022-11-17 15:46:23', 5, NULL),
-(10, 'F', 1, 1, '2022-11-17 15:46:47', 1, NULL),
-(11, 'P', 2, NULL, '2022-11-17 15:57:11', 1, 'Season the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming.'),
-(12, 'P', 2, NULL, '2022-11-17 15:57:32', 2, 'Pour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula.'),
-(13, 'P', 2, NULL, '2022-11-17 15:57:53', 3, 'Tilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set.'),
-(14, 'P', 2, NULL, '2022-11-17 15:58:16', 4, 'At this point you can fill the omelette with whatever you like – some grated cheese, sliced ham, fresh herbs, sautéed mushrooms or smoked salmon all work well. Scatter the filling over the top of the omelette and fold gently in half with the spatula. Slide'),
-(15, 'R', 2, 3, '2022-11-17 15:58:51', 4, NULL),
-(16, 'F', 2, 2, '2022-11-17 15:59:15', 1, NULL),
-(17, 'C', 2, 2, '2022-11-17 15:59:34', NULL, 'Yummy!'),
-(18, 'P', 3, NULL, '2022-11-17 16:07:33', 1, 'Wash the sweet potatoes thoroughly. Make small holes with fork. Cut into small pieces and bake at 120 degrees for 10 minutes. Occasionally flip till crispy sweet potatoes are ready. '),
-(19, 'P', 4, NULL, '2022-11-18 08:27:23', 1, 'Preheat an air fryer to 400 degrees F (200 degrees C).'),
-(20, 'P', 4, NULL, '2022-11-18 08:27:23', 2, 'Place buns in a single layer in the air fryer basket; cook in the preheated air fryer until crisp, about 2 minutes. Remove buns to a plate. '),
-(21, 'P', 4, NULL, '2022-11-18 08:27:45', 3, 'Place hot dogs in a single layer in the air fryer basket; cook for 3 minutes. Serve hot dogs in toasted buns. '),
-(22, 'R', 4, 2, '2022-11-18 08:28:00', 4, NULL),
-(23, 'R', 4, 1, '2022-11-18 08:28:37', 2, NULL),
-(24, 'C', 4, 3, '2022-11-18 08:28:58', NULL, 'I love this recipe!'),
-(25, 'F', 4, 3, '2022-11-18 08:29:17', 1, NULL);
-
--- --------------------------------------------------------
-
---
 -- Tabelstructuur voor tabel `ingredient`
 --
 
@@ -191,6 +144,53 @@ INSERT INTO `kitchen_type` (`id`, `record_type`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `recipe_info`
+--
+
+CREATE TABLE `recipe_info` (
+  `id` int(11) NOT NULL,
+  `record_type` enum('C','R','F','P') NOT NULL,
+  `dish_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `nummeric_field` int(11) DEFAULT NULL,
+  `text_field` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `recipe_info`
+--
+
+INSERT INTO `recipe_info` (`id`, `record_type`, `dish_id`, `user_id`, `date`, `nummeric_field`, `text_field`) VALUES
+(1, 'P', 1, NULL, '2022-11-17 14:28:57', 1, 'Preheat oven to 400°.'),
+(2, 'P', 1, NULL, '2022-11-17 14:29:32', 2, 'Unroll crust dough onto a baking sheet coated with cooking spray; pat into a 13 x 11-inch rectangle. Bake at 400° for 8 minutes. Remove crust from oven, and brush with 1/2 teaspoon oil. Rub crust with cut sides of garlic.'),
+(3, 'P', 1, NULL, '2022-11-17 14:29:57', 3, 'Arrange tomato slices on crust, leaving a 1/2-inch border; sprinkle evenly with cheese. Bake at 400° for 12 minutes or until cheese melts and crust is golden.'),
+(4, 'P', 1, NULL, '2022-11-17 14:30:36', 4, 'Combine 1/2 teaspoon oil and vinegar, stirring with a whisk.'),
+(5, 'P', 1, NULL, '2022-11-17 14:31:02', 5, 'Sprinkle pizza evenly with sliced basil, salt, and pepper. Drizzle the vinegar mixture evenly over the pizza. Cut pizza into 8 pieces.'),
+(6, 'C', 1, 1, '2022-11-17 15:41:44', NULL, 'Wat een lekker recept (heb het zelf geschreven)'),
+(7, 'C', 1, 2, '2022-11-17 15:45:13', NULL, 'Gadverdamme!!! EWW'),
+(8, 'R', 1, 2, '2022-11-17 15:45:32', 1, NULL),
+(9, 'R', 1, 1, '2022-11-17 15:46:23', 5, NULL),
+(10, 'F', 1, 1, '2022-11-17 15:46:47', 1, NULL),
+(11, 'P', 2, NULL, '2022-11-17 15:57:11', 1, 'Season the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming.'),
+(12, 'P', 2, NULL, '2022-11-17 15:57:32', 2, 'Pour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula.'),
+(13, 'P', 2, NULL, '2022-11-17 15:57:53', 3, 'Tilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set.'),
+(14, 'P', 2, NULL, '2022-11-17 15:58:16', 4, 'At this point you can fill the omelette with whatever you like – some grated cheese, sliced ham, fresh herbs, sautéed mushrooms or smoked salmon all work well. Scatter the filling over the top of the omelette and fold gently in half with the spatula. Slide'),
+(15, 'R', 2, 3, '2022-11-17 15:58:51', 4, NULL),
+(16, 'F', 2, 2, '2022-11-17 15:59:15', 1, NULL),
+(17, 'C', 2, 2, '2022-11-17 15:59:34', NULL, 'Yummy!'),
+(18, 'P', 3, NULL, '2022-11-17 16:07:33', 1, 'Wash the sweet potatoes thoroughly. Make small holes with fork. Cut into small pieces and bake at 120 degrees for 10 minutes. Occasionally flip till crispy sweet potatoes are ready. '),
+(19, 'P', 4, NULL, '2022-11-18 08:27:23', 1, 'Preheat an air fryer to 400 degrees F (200 degrees C).'),
+(20, 'P', 4, NULL, '2022-11-18 08:27:23', 2, 'Place buns in a single layer in the air fryer basket; cook in the preheated air fryer until crisp, about 2 minutes. Remove buns to a plate. '),
+(21, 'P', 4, NULL, '2022-11-18 08:27:45', 3, 'Place hot dogs in a single layer in the air fryer basket; cook for 3 minutes. Serve hot dogs in toasted buns. '),
+(22, 'R', 4, 2, '2022-11-18 08:28:00', 4, NULL),
+(23, 'R', 4, 1, '2022-11-18 08:28:37', 2, NULL),
+(24, 'C', 4, 3, '2022-11-18 08:28:58', NULL, 'I love this recipe!'),
+(25, 'F', 4, 3, '2022-11-18 08:29:17', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `user`
 --
 
@@ -231,14 +231,6 @@ ALTER TABLE `dish`
   ADD KEY `kitchen_id` (`kitchen_id`);
 
 --
--- Indexen voor tabel `dish_info`
---
-ALTER TABLE `dish_info`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `dish_id` (`dish_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexen voor tabel `ingredient`
 --
 ALTER TABLE `ingredient`
@@ -251,6 +243,14 @@ ALTER TABLE `ingredient`
 --
 ALTER TABLE `kitchen_type`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `recipe_info`
+--
+ALTER TABLE `recipe_info`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dish_id` (`dish_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexen voor tabel `user`
@@ -275,12 +275,6 @@ ALTER TABLE `dish`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT voor een tabel `dish_info`
---
-ALTER TABLE `dish_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
 -- AUTO_INCREMENT voor een tabel `ingredient`
 --
 ALTER TABLE `ingredient`
@@ -291,6 +285,12 @@ ALTER TABLE `ingredient`
 --
 ALTER TABLE `kitchen_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT voor een tabel `recipe_info`
+--
+ALTER TABLE `recipe_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
@@ -311,18 +311,18 @@ ALTER TABLE `dish`
   ADD CONSTRAINT `dish_ibfk_3` FOREIGN KEY (`kitchen_id`) REFERENCES `kitchen_type` (`id`);
 
 --
--- Beperkingen voor tabel `dish_info`
---
-ALTER TABLE `dish_info`
-  ADD CONSTRAINT `dish_info_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
-  ADD CONSTRAINT `dish_info_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
 -- Beperkingen voor tabel `ingredient`
 --
 ALTER TABLE `ingredient`
   ADD CONSTRAINT `ingredient_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
   ADD CONSTRAINT `ingredient_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+
+--
+-- Beperkingen voor tabel `recipe_info`
+--
+ALTER TABLE `recipe_info`
+  ADD CONSTRAINT `recipe_info_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
+  ADD CONSTRAINT `recipe_info_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
