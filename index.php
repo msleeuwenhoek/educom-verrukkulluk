@@ -1,15 +1,15 @@
 <?php
 
 require_once("lib/database.php");
-require_once("lib/article.php");
+require_once("lib/user.php");
 
 /// INIT
 $db = new database();
-$art = new article($db->getConnection());
+$art = new user($db->getConnection());
 
 
 /// VERWERK 
-$data = $art->selectArticleById(8);
+$data = $art->selectUserById(2);
 
 /// RETURN
 var_dump($data);
