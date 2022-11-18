@@ -1,15 +1,15 @@
 <?php
 
 require_once("lib/database.php");
-require_once("lib/user.php");
+require_once("lib/kitchen_type.php");
 
 /// INIT
 $db = new database();
-$art = new user($db->getConnection());
+$art = new kitchen_type($db->getConnection());
 
 
 /// VERWERK 
-$data = $art->selectUserById(2);
+$data = $art->selectKitchenTypeById(5);
 
 /// RETURN
 var_dump($data);
