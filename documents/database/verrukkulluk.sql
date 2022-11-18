@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 nov 2022 om 09:04
+-- Gegenereerd op: 18 nov 2022 om 16:03
 -- Serverversie: 10.4.25-MariaDB
 -- PHP-versie: 8.1.10
 
@@ -60,30 +60,15 @@ INSERT INTO `article` (`id`, `name`, `description`, `price`, `unit`, `packaging`
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `dish`
+-- Tabelstructuur voor tabel `grocery`
 --
 
-CREATE TABLE `dish` (
+CREATE TABLE `grocery` (
   `id` int(11) NOT NULL,
-  `kitchen_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `title` varchar(50) NOT NULL,
-  `short_description` varchar(256) NOT NULL,
-  `long_description` varchar(256) NOT NULL,
-  `file_name` varchar(50) NOT NULL
+  `article_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Gegevens worden geëxporteerd voor tabel `dish`
---
-
-INSERT INTO `dish` (`id`, `kitchen_id`, `type_id`, `user_id`, `date_added`, `title`, `short_description`, `long_description`, `file_name`) VALUES
-(1, 1, 1, 1, '2022-11-17 14:19:41', 'Pizza margherita', 'Experience the taste of Italy with the help of the humble Margherita pizza. A simple pizza with minimal ingredients that’s still able to create a mouthful of heaven with a crispy crust, creamy mozzarella, fragrant tomato sauce and a few fresh basil leaves ', 'A traditional Neapolitan Margherita pizza recipe is tomato sauce with fresh tomatoes, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato. ', 'pizza_margherita'),
-(2, 3, 4, 2, '2022-11-17 15:54:03', 'Omelet', 'Master the omelette with our simple recipe then add the filling of your choice – grated cheese, ham, fresh herbs, mushrooms and smoked salmon are favourites.', 'lorem ipsum longer omelet text', 'omelet'),
-(3, 5, 2, 3, '2022-11-17 16:07:00', 'Baked sweet potatoes', 'A perfect baked potato is hard to beat. The outside is brown and crisp, coated in a crust of sea salt. Pierce the skin, and your fork gives way to a soft, fluffy interior. ', 'It might be hard to resist eating the whole thing straight out of the oven, but if you take the time to top it with a pat of butter or a dollop of (cashew) sour cream, you won’t be able to deny that it was worth the wait.', 'sweet_potatoes'),
-(4, 5, 6, 3, '2022-11-18 08:19:28', 'Air fryer hot dogs', 'These air fryer hot dogs in toasted buns turn out perfectly crisp in minutes with the help of your air fryer. Top with ketchup, mustard, relish, chili, or condiments of choice.', 'From summer barbecues through to Bonfire Night, hot dogs will never go out of style.', 'hotdog');
 
 -- --------------------------------------------------------
 
@@ -93,7 +78,7 @@ INSERT INTO `dish` (`id`, `kitchen_id`, `type_id`, `user_id`, `date_added`, `tit
 
 CREATE TABLE `ingredient` (
   `id` int(11) NOT NULL,
-  `dish_id` int(11) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,7 +87,7 @@ CREATE TABLE `ingredient` (
 -- Gegevens worden geëxporteerd voor tabel `ingredient`
 --
 
-INSERT INTO `ingredient` (`id`, `dish_id`, `article_id`, `amount`) VALUES
+INSERT INTO `ingredient` (`id`, `recipe_id`, `article_id`, `amount`) VALUES
 (2, 1, 1, 1),
 (3, 1, 9, 1),
 (4, 1, 10, 1),
@@ -144,13 +129,41 @@ INSERT INTO `kitchen_type` (`id`, `record_type`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `recipe`
+--
+
+CREATE TABLE `recipe` (
+  `id` int(11) NOT NULL,
+  `kitchen_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT current_timestamp(),
+  `title` varchar(50) NOT NULL,
+  `short_description` varchar(256) NOT NULL,
+  `long_description` varchar(256) NOT NULL,
+  `file_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `recipe`
+--
+
+INSERT INTO `recipe` (`id`, `kitchen_id`, `type_id`, `user_id`, `date_added`, `title`, `short_description`, `long_description`, `file_name`) VALUES
+(1, 1, 1, 1, '2022-11-17 14:19:41', 'Pizza margherita', 'Experience the taste of Italy with the help of the humble Margherita pizza. A simple pizza with minimal ingredients that’s still able to create a mouthful of heaven with a crispy crust, creamy mozzarella, fragrant tomato sauce and a few fresh basil leaves ', 'A traditional Neapolitan Margherita pizza recipe is tomato sauce with fresh tomatoes, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato. ', 'pizza_margherita'),
+(2, 3, 4, 2, '2022-11-17 15:54:03', 'Omelet', 'Master the omelette with our simple recipe then add the filling of your choice – grated cheese, ham, fresh herbs, mushrooms and smoked salmon are favourites.', 'lorem ipsum longer omelet text', 'omelet'),
+(3, 5, 2, 3, '2022-11-17 16:07:00', 'Baked sweet potatoes', 'A perfect baked potato is hard to beat. The outside is brown and crisp, coated in a crust of sea salt. Pierce the skin, and your fork gives way to a soft, fluffy interior. ', 'It might be hard to resist eating the whole thing straight out of the oven, but if you take the time to top it with a pat of butter or a dollop of (cashew) sour cream, you won’t be able to deny that it was worth the wait.', 'sweet_potatoes'),
+(4, 5, 6, 3, '2022-11-18 08:19:28', 'Air fryer hot dogs', 'These air fryer hot dogs in toasted buns turn out perfectly crisp in minutes with the help of your air fryer. Top with ketchup, mustard, relish, chili, or condiments of choice.', 'From summer barbecues through to Bonfire Night, hot dogs will never go out of style.', 'hotdog');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `recipe_info`
 --
 
 CREATE TABLE `recipe_info` (
   `id` int(11) NOT NULL,
   `record_type` enum('C','R','F','P') NOT NULL,
-  `dish_id` int(11) NOT NULL,
+  `recipe_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `nummeric_field` int(11) DEFAULT NULL,
@@ -161,13 +174,13 @@ CREATE TABLE `recipe_info` (
 -- Gegevens worden geëxporteerd voor tabel `recipe_info`
 --
 
-INSERT INTO `recipe_info` (`id`, `record_type`, `dish_id`, `user_id`, `date`, `nummeric_field`, `text_field`) VALUES
+INSERT INTO `recipe_info` (`id`, `record_type`, `recipe_id`, `user_id`, `date`, `nummeric_field`, `text_field`) VALUES
 (1, 'P', 1, NULL, '2022-11-17 14:28:57', 1, 'Preheat oven to 400°.'),
 (2, 'P', 1, NULL, '2022-11-17 14:29:32', 2, 'Unroll crust dough onto a baking sheet coated with cooking spray; pat into a 13 x 11-inch rectangle. Bake at 400° for 8 minutes. Remove crust from oven, and brush with 1/2 teaspoon oil. Rub crust with cut sides of garlic.'),
 (3, 'P', 1, NULL, '2022-11-17 14:29:57', 3, 'Arrange tomato slices on crust, leaving a 1/2-inch border; sprinkle evenly with cheese. Bake at 400° for 12 minutes or until cheese melts and crust is golden.'),
 (4, 'P', 1, NULL, '2022-11-17 14:30:36', 4, 'Combine 1/2 teaspoon oil and vinegar, stirring with a whisk.'),
 (5, 'P', 1, NULL, '2022-11-17 14:31:02', 5, 'Sprinkle pizza evenly with sliced basil, salt, and pepper. Drizzle the vinegar mixture evenly over the pizza. Cut pizza into 8 pieces.'),
-(6, 'C', 1, 1, '2022-11-17 15:41:44', NULL, 'Wat een lekker recept (heb het zelf geschreven)'),
+(6, 'C', 1, 1, '2022-11-17 15:41:44', NULL, 'Wat een lekker recept.'),
 (7, 'C', 1, 2, '2022-11-17 15:45:13', NULL, 'Gadverdamme!!! EWW'),
 (8, 'R', 1, 2, '2022-11-17 15:45:32', 1, NULL),
 (9, 'R', 1, 1, '2022-11-17 15:46:23', 5, NULL),
@@ -184,9 +197,10 @@ INSERT INTO `recipe_info` (`id`, `record_type`, `dish_id`, `user_id`, `date`, `n
 (20, 'P', 4, NULL, '2022-11-18 08:27:23', 2, 'Place buns in a single layer in the air fryer basket; cook in the preheated air fryer until crisp, about 2 minutes. Remove buns to a plate. '),
 (21, 'P', 4, NULL, '2022-11-18 08:27:45', 3, 'Place hot dogs in a single layer in the air fryer basket; cook for 3 minutes. Serve hot dogs in toasted buns. '),
 (22, 'R', 4, 2, '2022-11-18 08:28:00', 4, NULL),
-(23, 'R', 4, 1, '2022-11-18 08:28:37', 2, NULL),
 (24, 'C', 4, 3, '2022-11-18 08:28:58', NULL, 'I love this recipe!'),
-(25, 'F', 4, 3, '2022-11-18 08:29:17', 1, NULL);
+(25, 'F', 4, 3, '2022-11-18 08:29:17', 1, NULL),
+(26, 'F', 2, 1, '2022-11-18 11:40:05', NULL, NULL),
+(27, 'F', 3, 2, '2022-11-18 11:47:04', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,20 +236,19 @@ ALTER TABLE `article`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `dish`
+-- Indexen voor tabel `grocery`
 --
-ALTER TABLE `dish`
+ALTER TABLE `grocery`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `type_id` (`type_id`),
-  ADD KEY `kitchen_id` (`kitchen_id`);
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexen voor tabel `ingredient`
 --
 ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dish_id` (`dish_id`),
+  ADD KEY `dish_id` (`recipe_id`),
   ADD KEY `article_id` (`article_id`);
 
 --
@@ -245,11 +258,20 @@ ALTER TABLE `kitchen_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexen voor tabel `recipe`
+--
+ALTER TABLE `recipe`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `type_id` (`type_id`),
+  ADD KEY `kitchen_id` (`kitchen_id`);
+
+--
 -- Indexen voor tabel `recipe_info`
 --
 ALTER TABLE `recipe_info`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dish_id` (`dish_id`),
+  ADD KEY `dish_id` (`recipe_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -269,10 +291,10 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT voor een tabel `dish`
+-- AUTO_INCREMENT voor een tabel `grocery`
 --
-ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `grocery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `ingredient`
@@ -287,10 +309,16 @@ ALTER TABLE `kitchen_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT voor een tabel `recipe`
+--
+ALTER TABLE `recipe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT voor een tabel `recipe_info`
 --
 ALTER TABLE `recipe_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
@@ -303,25 +331,32 @@ ALTER TABLE `user`
 --
 
 --
--- Beperkingen voor tabel `dish`
+-- Beperkingen voor tabel `grocery`
 --
-ALTER TABLE `dish`
-  ADD CONSTRAINT `dish_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `dish_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `kitchen_type` (`id`),
-  ADD CONSTRAINT `dish_ibfk_3` FOREIGN KEY (`kitchen_id`) REFERENCES `kitchen_type` (`id`);
+ALTER TABLE `grocery`
+  ADD CONSTRAINT `grocery_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`),
+  ADD CONSTRAINT `grocery_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Beperkingen voor tabel `ingredient`
 --
 ALTER TABLE `ingredient`
-  ADD CONSTRAINT `ingredient_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
+  ADD CONSTRAINT `ingredient_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
   ADD CONSTRAINT `ingredient_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+
+--
+-- Beperkingen voor tabel `recipe`
+--
+ALTER TABLE `recipe`
+  ADD CONSTRAINT `recipe_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `recipe_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `kitchen_type` (`id`),
+  ADD CONSTRAINT `recipe_ibfk_3` FOREIGN KEY (`kitchen_id`) REFERENCES `kitchen_type` (`id`);
 
 --
 -- Beperkingen voor tabel `recipe_info`
 --
 ALTER TABLE `recipe_info`
-  ADD CONSTRAINT `recipe_info_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
+  ADD CONSTRAINT `recipe_info_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`),
   ADD CONSTRAINT `recipe_info_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
