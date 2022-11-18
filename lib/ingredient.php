@@ -9,10 +9,10 @@ class ingredient
         $this->connection = $connection;
     }
 
-    public function selectIngredients($dish_id)
+    public function selectIngredients($recipe_id)
     {
         $ingredients = array();
-        $sql = "SELECT * FROM ingredient where dish_id=$dish_id";
+        $sql = "SELECT * FROM ingredient where recipe_id=$recipe_id";
         $result = $this->connection->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $ingredients[] = $row;
@@ -30,16 +30,5 @@ class ingredient
             $updatedIngredients[] = $ingredient;
         }
         return $updatedIngredients;
-    }
-
-    public function calculateTotalPrice($ingredients)
-    {
-        $ingredientPrices = array();
-        foreach ($ingredients as $ingredient) {
-            $ingredientPrice = $ingredient['article']['price'] / $ingredient['article']['packaging'] * $ingredient['amount'];
-            $ingredientPrices[] = $ingredientPrice;
-        }
-        $totalPrice = round(array_sum($ingredientPrices), 2);
-        return $totalPrice;
     }
 }

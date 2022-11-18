@@ -11,10 +11,10 @@ class recipeInfo
         $this->connection = $connection;
     }
 
-    public function selectPreparations($dish_id)
+    public function selectPreparations($recipe_id)
     {
         $preparations = array();
-        $sql = "SELECT * FROM recipe_info WHERE dish_id = $dish_id AND record_type='P'";
+        $sql = "SELECT * FROM recipe_info WHERE recipe_id = $recipe_id AND record_type='P'";
         $result = $this->connection->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $preparations[] = $row;
@@ -22,19 +22,22 @@ class recipeInfo
         return $preparations;
     }
 
-    public function selectRatings($dish_id)
+    public function selectRatings($recipe_id)
     {
         $ratings = array();
-        $sql = "SELECT * FROM recipe_info WHERE dish_id = $dish_id AND record_type='R'";
+        $sql = "SELECT * FROM recipe_info WHERE recipe_id = $recipe_id AND record_type='R'";
         $result = $this->connection->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $ratings[] = $row;
         }
-        return $this->calculateAverageRating($ratings);
+        return $ratings;
     }
 
-    public function calculateAverageRating($ratings)
+    public function calculateAverageRating($recipe_id)
     {
+        $ratings = array();
+        $ratings = $this->selectRatings($recipe_id);
+
         $ratingValues = array();
         $averageRating = 0;
         if (count($ratings) > 0) {
@@ -46,30 +49,30 @@ class recipeInfo
         return $averageRating;
     }
 
-    public function isFavorite($dish_id, $user_id)
+    public function isFavorite($recipe_id, $user_id)
     {
-        $sql = "SELECT * FROM recipe_info WHERE dish_id = $dish_id AND `user_id` = $user_id AND record_type='F' ";
+        $sql = "SELECT * FROM recipe_info WHERE recipe_id = $recipe_id AND `user_id` = $user_id AND record_type='F' ";
         $result = $this->connection->query($sql);
         if ($result->num_rows > 0) {
-            $favorite = true;
+            $isFavorite = true;
         } else {
-            $favorite = false;
+            $isFavorite = false;
         }
-        return $favorite;
+        return $isFavorite;
     }
 
-    public function addFavorite($dish_id, $user_id)
+    public function addFavorite($recipe_id, $user_id)
     {
-        $sql = "INSERT INTO recipe_info(id, record_type, dish_id, user_id, date, nummeric_field, text_field) VALUES(NULL, 'F', '$dish_id', '$user_id', current_timestamp(), NULL, NULL)";
+        $sql = "INSERT INTO recipe_info(id, record_type, recipe_id, user_id, date, nummeric_field, text_field) VALUES(NULL, 'F', '$recipe_id', '$user_id', current_timestamp(), NULL, NULL)";
         if (mysqli_query($this->connection, $sql)) {
             echo "Added to favorites";
         } else {
             echo "Sorry, something went wrong. Try agian later";
         }
     }
-    public function deleteFavorite($dish_id, $user_id)
+    public function deleteFavorite($recipe_id, $user_id)
     {
-        $sql = "DELETE FROM recipe_info WHERE dish_id = $dish_id AND user_id=$user_id";
+        $sql = "DELETE FROM recipe_info WHERE recipe_id = $recipe_id AND user_id=$user_id";
         if (mysqli_query($this->connection, $sql)) {
             echo "Deleted from favorites";
         } else {
@@ -77,12 +80,10 @@ class recipeInfo
         }
     }
 
-
-
-    public function selectComments($dish_id)
+    public function selectComments($recipe_id)
     {
         $comments = array();
-        $sql = "SELECT * FROM recipe_info WHERE dish_id = $dish_id AND record_type='C'";
+        $sql = "SELECT * FROM recipe_info WHERE recipe_id = $recipe_id AND record_type='C'";
         $result = $this->connection->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $comments[] = $row;

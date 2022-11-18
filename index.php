@@ -1,20 +1,26 @@
 <?php
+session_start();
+
+//setting imaginary logged in user
+$_SESSION['user_id'] = 1;
+
+
 
 require_once("lib/database.php");
-require_once("lib/ingredient.php");
+require_once("lib/recipe.php");
 
 /// INIT
 $db = new database();
-$ingredient = new ingredient($db->getConnection());
+$recipe = new recipe($db->getConnection());
 
 
 /// VERWERK 
-$ingredients = $ingredient->selectIngredients(1);
+$data = $recipe->selectRecipe(1);
 
-$totalPrice = $ingredient->calculateTotalPrice($ingredients);
-echo $totalPrice;
+
 
 
 /// RETURN
 echo '<pre>';
-var_dump($ingredients);
+var_dump($data);
+unset($_SESSION['user_id']);
