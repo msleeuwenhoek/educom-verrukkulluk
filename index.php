@@ -7,20 +7,21 @@ $_SESSION['user_id'] = 1;
 
 
 require_once("lib/database.php");
-require_once("lib/recipe.php");
+require_once("lib/grocery.php");
 
 /// INIT
 $db = new database();
-$recipe = new recipe($db->getConnection());
+$grocery = new grocery($db->getConnection());
 
 
 /// VERWERK 
-$recipes = $recipe->selectRecipes();
+$groceries = $grocery->selectGroceries(1);
 
 
 
 
 /// RETURN
 echo '<pre>';
-var_dump($recipes[3]);
+var_dump($groceries);
+
 unset($_SESSION['user_id']);
