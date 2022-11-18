@@ -15,6 +15,23 @@ class recipe
         $this->connection = $connection;
     }
 
+    public function selectRecipes()
+    {
+        $recipes = array();
+        $updatedRecipes = array();
+        $sql = "SELECT * FROM recipe";
+        $result = $this->connection->query($sql);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $recipes[] = $row;
+        }
+
+        foreach ($recipes as $recipe) {
+            $recipeData = $this->selectRecipe($recipe['id']);
+            $updatedRecipes[] = $recipeData;
+        }
+        return $updatedRecipes;
+    }
+
     public function selectRecipe($recipe_id)
     {
         $sql = "SELECT * FROM recipe WHERE id=$recipe_id";

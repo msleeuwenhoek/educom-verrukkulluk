@@ -15,12 +15,12 @@ $recipe = new recipe($db->getConnection());
 
 
 /// VERWERK 
-$data = $recipe->selectRecipe(1);
+$recipes = $recipe->selectRecipes();
 
 
 
 
 /// RETURN
 echo '<pre>';
-var_dump($data);
+var_dump($recipes[3]);
 unset($_SESSION['user_id']);
