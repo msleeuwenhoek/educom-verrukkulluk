@@ -1,31 +1,20 @@
 <?php
 
 require_once("lib/database.php");
-require_once("lib/recipe_info.php");
+require_once("lib/ingredient.php");
 
 /// INIT
 $db = new database();
-$recipeInfo = new recipeInfo($db->getConnection());
+$ingredient = new ingredient($db->getConnection());
 
 
 /// VERWERK 
-$data = $recipeInfo->selectPreparations(1, 1);
+$ingredients = $ingredient->selectIngredients(1);
 
-if ($recipeInfo->isFavorite(1, 1)) {
-    echo "favorite recipe <br/>";
-}
-$comments = $recipeInfo->selectComments(1);
-$rating = $recipeInfo->selectRatings(1);
-echo 'rating: ' . $rating . '<br/>';
+$totalPrice = $ingredient->calculateTotalPrice($ingredients);
+echo $totalPrice;
 
-//$recipeInfo->addFavorite(4, 1);
-$recipeInfo->deleteFavorite(4, 1);
-echo '<br/>';
 
 /// RETURN
-echo 'preparations:';
 echo '<pre>';
-var_dump($data);
-
-var_dump($comments);
-echo $comments[0]['user']['user_name'];
+var_dump($ingredients);
