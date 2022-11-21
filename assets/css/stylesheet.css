@@ -1,0 +1,212 @@
+/**
+ VERRUKKULLUK MAIN.CSS
+ */
+
+:root {
+  /* FONTS */
+  --heading: "pretty_lilyregular";
+
+  /* COLORS */
+  --dark-brown: #402214;
+  --lighter-brown: #774231;
+  --lightest-brown: #aa4b1b;
+
+  --darker-red: #b31714;
+  --lighter-red: #dc3439;
+
+  --kahki: #fff0d6;
+
+  --darker-orange: #eb8d1f;
+  --lighter-orange: #fca01f;
+
+  --darker-green: #6e8722;
+  --lighter-green: #95b82d;
+
+  --white: #fff;
+  --black: #000;
+}
+
+/** HEADING **/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading) !important;
+}
+
+h1 {
+  font-size: 52px;
+}
+
+h2 {
+  font-size: 42px;
+}
+
+h3,
+h4,
+h5 {
+  font-size: 32px;
+}
+
+/** HTML / BODY **/
+html,
+body {
+  font-family: "Helvetica Neue", Arial, SansSerif;
+  font-size: 16px;
+}
+
+.inner-section {
+  padding: 4rem;
+}
+
+/** HERO SECTION **/
+.hero-section {
+  min-height: 600px;
+  background-image: url("../img/hero-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  background-color: #fff0d6;
+}
+
+.hero-section .logo {
+  height: 180px;
+}
+
+/** CONTENT SECTION **/
+.content-section {
+  padding-inline: 2rem;
+}
+
+/** agenda **/
+.agenda {
+  background-color: var(--lighter-green);
+  margin-bottom: 4rem;
+}
+
+.agenda-item {
+  display: flex;
+  padding-bottom: 2rem;
+}
+.agenda-item i {
+  color: white;
+  font-size: 40px;
+  padding: 1rem;
+  margin-left: -15px;
+}
+
+.agenda img.header,
+.login img.header {
+  display: block;
+  margin: 1rem auto;
+  width: 150px;
+}
+
+/** login **/
+.login {
+  background-color: var(--darker-red);
+}
+
+.login label {
+  color: white;
+}
+
+.login input {
+  margin-bottom: 1rem;
+}
+
+.login .btn {
+  background-color: var(--lighter-orange);
+  border: none;
+  display: block;
+  margin: 2rem auto;
+  font-family: var(--heading);
+  font-size: 35px;
+  line-height: 0.7;
+  padding: 10px 55px;
+  border-radius: 20px;
+}
+
+/** recipes **/
+.recipes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4rem;
+  padding: 0;
+  padding-left: 4rem;
+}
+
+.recipe-container {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.253);
+}
+
+.recipe-container .recipe-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.recipe-container .recipe-info {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-between;
+}
+
+.recipe-container h2 {
+  color: var(--darker-green);
+}
+
+.recipe-container .title-rating-container,
+.recipe-container .button-stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-container p {
+  padding-block: 1rem;
+}
+
+.recipe-container .button-stats-container span {
+  padding: 0.4rem;
+}
+.recipe-container .button-stats-container i {
+  color: var(--lighter-red);
+}
+
+.recipe-container .button-stats-container button {
+  background-color: var(--lighter-red);
+  border: none;
+  color: white;
+
+  font-family: var(--heading);
+  font-size: 35px;
+  line-height: 0.7;
+  padding: 10px 35px;
+  border-radius: 20px;
+}
+
+/** FOOTER SECTION **/
+.footer {
+  background-color: var(--darker-orange);
+  color: white;
+}
+.footer .inner-section {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer img.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.footer img.header {
+  width: 150px;
+  padding-bottom: 2rem;
+}

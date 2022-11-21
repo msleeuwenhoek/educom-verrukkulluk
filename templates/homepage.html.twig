@@ -2,31 +2,34 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
-<img src="assets/img/logo-v2.png"/>
+    <div class="header">
+        <img class="logo" src="assets/img/logo-v2.png"/>
+    </div>
 {% endblock %}
 
 
 {% block content %}
-   
-
-    
-
-
-    
     {% for recipe in data %}
         <div class="recipe-container">
-            <img src="./assets/img/{{ recipe.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" style="width: 100px; heigfht: 100px;">
+            <img class="recipe-image" src="./assets/img/{{ recipe.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
+            <div class="recipe-info" >         
+                <div >
+                <div class="title-rating-container">
+                    <h2>{{ recipe.recipe.title }}</h2>
+                    <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                </div>
+                <p>{{ recipe.recipe.short_description }}</p>
+            </div>
+            <div class="button-stats-container">       
+                <button>Get started!</button>
+                <span>
+                <span><i class="fa fa-user"></i> 4</span>
+                <span><i class="fa fa-euro-sign"></i> {{recipe.total_price}}</span>
+                <span><i class="fa fa-fire"></i> ?</span>
+                </span>
             
-            
-            <h2>{{ recipe.recipe.title }}</h2>
-            <span>
-            <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-            </span>
-            <p>  {{ recipe.recipe.short_description }}</p>
-            <button>Get started!</button>
-            <span><i class="fa fa-user"></i> 4</span>
-            <span><i class="fa fa-euro-sign"></i> {{recipe.total_price}}</span>
-            <span><i class="fa fa-fire"></i> ?</span>
+            </div>
+            </div>
        </div>
     {% endfor %}
     

@@ -1,14 +1,14 @@
 <html lang="nl">
 <head>
 
-    <title>het is verrukkuluk! :: {{ title }} </title>
+    <title>Verrukkuluk! :: {{ title }} </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css" />
 
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
 
     <script type="text/javascript" language="javascript" src="assets/jquery/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="assets/bootstrap/js/bootstrap.js"></script>
@@ -17,7 +17,7 @@
 <body>
 <div class="container-fluid">
 
-    <div class="row">
+    <div class="row inner-section hero-section">
         <div class="col-md-12">
         {% block header %}
             
@@ -25,15 +25,66 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Agenda</h2>
-            <i class="fa fa-calendar"></i> FontAwesome <a href="https://fontawesome.com/icons?d=gallery&m=free">Documentation</a><br>
-            <i class="fa fa-file-pdf"></i><a href="https://www.layoutit.com/build">Layout-it</a>
-
-
+    <div class="row inner-section content">
+        <div class="col-md-3 ">
+            <div class="row agenda content-section">
+                <div class="col-md-12">
+                <img class="header" src="./assets/img/verrukkulluk-agenda.png" alt="agenda"/>
+                <div class="agenda-item">
+                    <i class="fa fa-calendar"></i> 
+                    <div>
+                        <h3>Vegetarian cooking</h3>
+                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <i class="fa fa-calendar"></i> 
+                    <div>
+                        <h3>Vegetarian cooking</h3>
+                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <i class="fa fa-calendar"></i> 
+                    <div>
+                        <h3>Vegetarian cooking</h3>
+                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <i class="fa fa-calendar"></i> 
+                    <div>
+                        <h3>Vegetarian cooking</h3>
+                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <i class="fa fa-calendar"></i> 
+                    <div>
+                        <h3>Vegetarian cooking</h3>
+                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row login content-section">
+            <div class="col-md-12 ">
+                <img class="header" src="./assets/img/verrukkulluk-login.png" alt="Login"/>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+            </div>
         </div>
-        <div class="col-md-9 content">
+        <div class="col-md-9 content-section recipes">
             
             {%  block content %}
             {%  endblock %}
@@ -41,13 +92,24 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Footer</h1>
+    <div class="row footer">
+        <div class="col-md-9 inner-section">
+
+            <img class="logo" src="./assets/img/verrukkulluk-pay-off.png" alt="verrukkulluk logo"/>
+            <div>
+                <img class="header" src="./assets/img/verrukkulluk-contact.png" alt="contact"/>
+                <div>verrukkuluk.nl</div>
+                <div>Poststraat 2b</div>
+                <div>Sittard</div>
+                <div>info@verrukkuluk.nl</div>
+            </div>
         </div>
     </div>
 
 
+
 </div>
+
+
 
 </body>
