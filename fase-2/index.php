@@ -8,7 +8,7 @@ $loader = new \Twig\Loader\FilesystemLoader("./templates");
 /// $twig = new \Twig\Environment($loader), ["cache" => "./cache/cc"]);
 
 /// VOOR DEVELOPMENT:
-$twig = new \Twig\Environment($loader, ["debug" => true ]);
+$twig = new \Twig\Environment($loader, ["debug" => true]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 /******************************/
@@ -28,16 +28,16 @@ $gerecht_id = isset($_GET["gerecht_id"]) ? $_GET["gerecht_id"] : "";
 $action = isset($_GET["action"]) ? $_GET["action"] : "homepage";
 
 
-switch($action) {
+switch ($action) {
 
-        case "homepage": {
+    case "homepage": {
             $data = $gerecht->selecteerGerecht();
             $template = 'detail.html.twig';
             $title = "homepage";
             break;
         }
 
-        case "detail": {
+    case "detail": {
             $data = $gerecht->selecteerGerecht($gerecht_id);
             $template = 'detail.html.twig';
             $title = "detail pagina";
