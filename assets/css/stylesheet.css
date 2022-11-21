@@ -140,6 +140,9 @@ body {
 
 .recipe-container {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.253);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .recipe-container .recipe-image {
@@ -148,12 +151,9 @@ body {
   object-fit: cover;
 }
 
-.recipe-container .recipe-info {
+.recipe-container .recipe-info,
+.recipe-container .button-stats-container {
   padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-  justify-content: space-between;
 }
 
 .recipe-container h2 {
@@ -165,10 +165,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.recipe-container p {
-  padding-block: 1rem;
 }
 
 .recipe-container .button-stats-container span {

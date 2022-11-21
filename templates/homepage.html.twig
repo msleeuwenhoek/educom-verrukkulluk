@@ -11,14 +11,16 @@
 {% block content %}
     {% for recipe in data %}
         <div class="recipe-container">
-            <img class="recipe-image" src="./assets/img/{{ recipe.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
-            <div class="recipe-info" >         
-                <div >
-                <div class="title-rating-container">
-                    <h2>{{ recipe.recipe.title }}</h2>
-                    <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+            <div>
+                <img class="recipe-image" src="./assets/img/{{ recipe.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
+                <div class="recipe-info" >         
+                    
+                    <div class="title-rating-container">
+                        <h2>{{ recipe.recipe.title }}</h2>
+                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                    </div>
+                    <p>{{ recipe.recipe.short_description }}</p>
                 </div>
-                <p>{{ recipe.recipe.short_description }}</p>
             </div>
             <div class="button-stats-container">       
                 <button>Get started!</button>
@@ -27,9 +29,8 @@
                 <span><i class="fa fa-euro-sign"></i> {{recipe.total_price}}</span>
                 <span><i class="fa fa-fire"></i> ?</span>
                 </span>
-            
             </div>
-            </div>
+           
        </div>
     {% endfor %}
     
