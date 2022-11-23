@@ -1,37 +1,14 @@
 {% extends "main.html.twig" %}
 
 {% block header %}
-    <div class="header">
-        <img class="logo" src="assets/img/logo-v2.png"/>
         <img class="hero-image" src="./assets/img/{{ data.recipe.file_name }}.jpg">
-    </div>
+
 {% endblock %}
 
 {% block content %}
 
   
-        <div class="recipe-container">
-            <div>
-                <img class="recipe-image" src="./assets/img/{{ data.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
-                <div class="recipe-info" >         
-                    
-                    <div class="title-rating-container">
-                        <h2>{{ data.recipe.title }}</h2>
-                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
-                    </div>
-                    <p>{{ data.recipe.short_description }}</p>
-                </div>
-            </div>
-            <div class="button-stats-container">       
-                <span>
-                <span><i class="fa fa-user"></i> 4</span>
-                <span><i class="fa fa-euro-sign"></i> {{data.total_price}}</span>
-                <span><i class="fa fa-fire"></i> ?</span>
-                </span>
-            </div>
-           
-       </div>
-  
+   
 
     
 {% endblock %}

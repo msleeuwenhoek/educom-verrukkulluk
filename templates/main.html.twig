@@ -6,22 +6,51 @@
 
     <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css" />
-
-    <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+    <script src="https://kit.fontawesome.com/48acdf1f79.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 
     <script type="text/javascript" language="javascript" src="assets/jquery/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="assets/bootstrap/js/bootstrap.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".hamburger-menu-icon").click(function(){
+            $(".menu").addClass("active-menu")
+        })
 
-</html>
+        $(document).click(function(event){
+            if (!$(event.target).is($(".hamburger-menu-icon"))&&!$(event.target).is($(".menu"))){
+                 $(".menu").removeClass("active-menu")
+            }
+            })
+    })
+            
+
+    </script>
+</head>
 <body>
 <div class="container-fluid">
 
-    <div class="row inner-section hero-section">
-        <div class="col-md-12">
-        {% block header %}
-            
-        {% endblock %}   
+    <div class="row  hero-section">
+        <div class="menu inner-section">
+            <a href="index.php"><img class="menu-logo" src="assets/img/logo-v2.png"/></a>
+            <div>
+            <span class="menu-item"><a href="index.php?action=favorites">My favorites</a></span>
+            <span class="menu-item"><a href="index.php?action=grocerylist">My grocery list</a></span>
+            </div>
+        </div> 
+        <div class="col-md-12 inner-section">
+        <div class="header">
+            <a href="index.php"><img class="logo" src="assets/img/logo-v2.png"/></a>
+            <div class="search-menu-section">
+                <span class="search-input">            
+                    <input type="search" placeholder="Search"/>
+                </span>
+                <i  class="fa fa-bars hamburger-menu-icon"></i>
+            </div>
+            {% block header %}
+                
+            {% endblock %}     
+        </div> 
         </div>
     </div>
 
@@ -112,3 +141,4 @@
 
 
 </body>
+</html>

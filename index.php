@@ -61,8 +61,7 @@ $template = $twig->load($template);
 
 /// En tonen die handel!
 echo $template->render(["title" => $title, "data" => $data]);
-echo "<pre>";
-var_dump($data);
+
 
 //echo '<pre>';
 //var_dump($data);
