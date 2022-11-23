@@ -4,6 +4,7 @@
 {% block header %}
     <div class="header">
         <img class="logo" src="assets/img/logo-v2.png"/>
+        <img class="hero-image"src="assets/img/hero-image.jpg">
     </div>
 {% endblock %}
 
@@ -23,7 +24,7 @@
                 </div>
             </div>
             <div class="button-stats-container">       
-                <button>Get started!</button>
+                <button><a href="index.php?recipe_id={{recipe.recipe.id}}&action=detail">Get started!</a></button>
                 <span>
                 <span><i class="fa fa-user"></i> 4</span>
                 <span><i class="fa fa-euro-sign"></i> {{recipe.total_price}}</span>

@@ -64,15 +64,20 @@ body {
 /** HERO SECTION **/
 .hero-section {
   min-height: 600px;
-  background-image: url("../img/hero-image.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: right;
-  background-color: #fff0d6;
 }
 
 .hero-section .logo {
   height: 180px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  z-index: -1;
 }
 
 /** CONTENT SECTION **/
@@ -205,4 +210,16 @@ body {
 .footer img.header {
   width: 150px;
   padding-bottom: 2rem;
+}
+
+.yellow,
+.blue {
+  height: 100px;
+}
+
+.yellow {
+  background-color: yellow;
+}
+.blue {
+  background-color: blue;
 }
