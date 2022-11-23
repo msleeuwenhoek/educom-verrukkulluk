@@ -3,6 +3,7 @@
 require_once 'ingredient.php';
 require_once 'recipe_info.php';
 require_once 'user.php';
+require_once 'kitchen_type.php';
 
 
 
@@ -48,6 +49,8 @@ class recipe
         $preparations = $this->selectPreparations($recipe['id']);
         $comments = $this->selectComments($recipe['id']);
         $totalPrice = $this->calculateTotalPrice($ingredients);
+        $kitchen = $this->selectKitchenType($recipe['kitchen_id']);
+        $type = $this->selectKitchenType($recipe['type_id']);
 
         if (isset($current_user)) {
             $isFavorite = $this->checkIfFavorite($recipe['id'], $current_user['id']);
@@ -55,7 +58,7 @@ class recipe
             $isFavorite = false;
         }
         // Returning all associated data
-        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice);
+        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type);
     }
 
     private function selectIngredients($recipe_id)
@@ -109,5 +112,12 @@ class recipe
         }
         $totalPrice = round(array_sum($ingredientPrices), 2);
         return $totalPrice;
+    }
+
+    private function selectKitchenType($kitchen_type_id)
+    {
+        $kitchenTypeModel = new kitchen_type($this->connection);
+        $kitchen_type = $kitchenTypeModel->selectKitchenTypeById($kitchen_type_id);
+        return $kitchen_type;
     }
 }
