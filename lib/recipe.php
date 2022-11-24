@@ -111,7 +111,7 @@ class recipe
             $ingredientPrice = $ingredient['article']['price'] / $ingredient['article']['packaging'] * $ingredient['amount'];
             $ingredientPrices[] = $ingredientPrice;
         }
-        $totalPrice = round(array_sum($ingredientPrices), 2);
+        $totalPrice = number_format(array_sum($ingredientPrices), 2, ",", ".");
         return $totalPrice;
     }
 
