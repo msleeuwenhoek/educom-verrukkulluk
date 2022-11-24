@@ -363,6 +363,16 @@ h2 {
   display: block;
 }
 
+.box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.scrollable {
+  max-height: 400px;
+  overflow: auto;
+}
+
 /** INGREDIENTS TAB **/
 .ingredient-container {
   display: flex;
@@ -388,12 +398,42 @@ h2 {
 .ingredient-container .amount {
   font-size: 22px;
 }
-.box {
+
+/** PREPARATIONS TAB **/
+
+.preparation-container .preparation {
+  margin-block: 2rem;
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  align-items: center;
 }
-.scrollable {
-  max-height: 400px;
-  overflow: auto;
+.preparation-container .step {
+  background-color: var(--lighter-orange);
+  padding: 0.6rem 1.3rem;
+  border-radius: 50px;
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+/** COMMENTS TAB **/
+
+.comment-container .comment {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-block: 2rem;
+}
+.comment-container img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50px;
+  border: solid 4px var(--darker-orange);
+}
+
+.comment-container .username {
+  color: var(--darker-green);
+  font-family: var(--heading);
+  font-size: 28px;
 }
