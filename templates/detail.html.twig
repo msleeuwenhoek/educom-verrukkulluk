@@ -6,104 +6,103 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="detail-container">
-    <div class="main-details-container">
-        <div class="img-container">
-            <img class="recipe-image" src="./assets/img/{{ data.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
-        </div>
-        <div class="main-details">
-            <div>
-                <span class="recipe-stats"><i class="fa fa-user"></i> 4</span>
-                <span class="recipe-stats"><i class="fa fa-euro-sign"></i> {{data.total_price}}</span>
-                <span class="recipe-stats"><i class="fa fa-fire"></i> {{data.calories}}</span>
+<div class="detail-content">
+    <div class="detail-container">
+        <div class="main-details-container">
+            <div class="img-container">
+                <img class="recipe-image" src="./assets/img/{{ data.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
             </div>
-            <div class="title-rating-container">
-                <h2>{{ data.recipe.title }}</h2>
-                <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
-            </div>
-            <div class="kitchen-type-container">
-                <span>
-                    <span class="kitchen-type">Kitchen</span><span> {{data.kitchen.description}}</span>
-                </span>
-                <span>
-                    <span class="kitchen-type">Type</span><span> {{data.type.description}}</span>
-                </span>
-            </div>
-            <div class="descriptions">
-                <p> {{data.recipe.short_description}} </p>
-                <p> {{data.recipe.long_description}} </p>
-            </div>
-            <div class="button-favorite-container">
-                <button class="red-btn button"><a href="index.php?action=grocerylist">Add to grocerylist</a></button>
-                <i class="fa fa-heart"></i>
+            <div class="main-details">
+                <div>
+                    <div>
+                        <span class="recipe-stats"><i class="fa fa-user"></i> 4</span>
+                        <span class="recipe-stats"><i class="fa fa-euro-sign"></i> {{data.total_price}}</span>
+                        <span class="recipe-stats"><i class="fa fa-fire"></i> {{data.calories}}</span>
+                    </div>
+                    <div class="title-rating-container">
+                        <h2>{{ data.recipe.title }}</h2>
+                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                    </div>
+                    <div class="kitchen-type-container">
+                        <span>
+                            <span class="kitchen-type">Kitchen</span><span> {{data.kitchen.description}}</span>
+                        </span>
+                        <span>
+                            <span class="kitchen-type">Type</span><span> {{data.type.description}}</span>
+                        </span>
+                    </div>
+                    <div class="descriptions">
+                        <p> {{data.recipe.short_description}} </p>
+                        <p> {{data.recipe.long_description}} </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="button-favorite-container">
+                        <button class="red-btn button"><a href="index.php?action=grocerylist">Add to grocerylist</a></button>
+                        <i class="fa fa-heart"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="detail-container">
-    <div class="detail-tabs">
-        <input type="radio" id="ingredients-tab" checked="checked" name="detail-tab-radio">
-        <label for= "ingredients-tab" class="label-1" >Ingredients</label>
-        <div class="tab ingredients">
-            <div class="box">
-            <div class="scrollable">
-            {% for ingredient in data.ingredients %}
-            <div class="ingredient-container">
-                <img src="assets/img/{{ingredient.article.file_name}}.jpg"/>
-                <div>
-                    <div class="name">{{ingredient.article.name}}</div>
-                    <p>{{ingredient.article.description}}</p>
-                    <div><span class="amount">Hoeveelheid: </span>{{ingredient.amount}} {{ingredient.article.unit}}</div>
-                </div>
-             </div>
-            {% endfor %}
-            </div>
-            </div>
-            <div class="scroll-arrow">
-            <i class="fa fa-chevron-down"></i>
-            </div>
-        </div>
-         <input type="radio" id="preparations-tab" name="detail-tab-radio">
-        <label for= "preparations-tab" class="label-2">Preparations</label>
-        <div class="tab preparations">
-            <div class="box">
-            <div class="scrollable">
-            {% for preparation in data.preparations %}
-            <div class="preparation-container">
-                <div class="preparation">
-                    <span class="step">{{preparation.nummeric_field}}.</span>
-                    <span>{{preparation.text_field}}</span>
-                </div>
-             </div>
-            {% endfor %}
-            </div>
-            </div>
-            <div class="scroll-arrow">
-            <i class="fa fa-chevron-down"></i>
-            </div>
-        </div>
-         <input type="radio" id="comments-tab" name="detail-tab-radio">
-        <label for= "comments-tab" class="label-3">Comments</label>
-        <div class="tab comments ">
-             <div class="box">
-            <div class="scrollable">
-            {% for comment in data.comments %}
-            <div class="comment-container">
-                <div class="comment">
-                    <img  src="./assets/img/{{comment.user.file_name}}.jpg"/>
+    <div class="detail-container">
+        <div class="detail-tabs">
+            <input type="radio" id="ingredients-tab" checked="checked" name="detail-tab-radio">
+            <label for= "ingredients-tab" class="label-1" >Ingredients</label>
+            <div class="tab ingredients">
+                <div class="box">
+                <div class="scrollable">
+                {% for ingredient in data.ingredients %}
+                <div class="ingredient-container">
+                    <img src="assets/img/{{ingredient.article.file_name}}.jpg"/>
                     <div>
-                    <div class="username">{{comment.user.user_name}}.</div>
-                    <div class"comment-text">{{comment.text_field}}</div>
+                        <div class="name">{{ingredient.article.name}}</div>
+                        <p>{{ingredient.article.description}}</p>
+                        <div><span class="amount">Hoeveelheid: </span>{{ingredient.amount}} {{ingredient.article.unit}}</div>
                     </div>
                 </div>
-             </div>
-            {% endfor %}
+                {% endfor %}
+                </div>
+                </div>
+              
             </div>
+            <input type="radio" id="preparations-tab" name="detail-tab-radio">
+            <label for= "preparations-tab" class="label-2">Preparations</label>
+            <div class="tab preparations">
+                <div class="box">
+                <div class="scrollable">
+                {% for preparation in data.preparations %}
+                <div class="preparation-container">
+                    <div class="preparation">
+                        <span class="step">{{preparation.nummeric_field}}.</span>
+                        <span>{{preparation.text_field}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+              
             </div>
-            <div class="scroll-arrow">
-            <i class="fa fa-chevron-down"></i>
+            <input type="radio" id="comments-tab" name="detail-tab-radio">
+            <label for= "comments-tab" class="label-3">Comments</label>
+            <div class="tab comments ">
+                <div class="box">
+                <div class="scrollable">
+                {% for comment in data.comments %}
+                <div class="comment-container">
+                    <div class="comment">
+                        <img  src="./assets/img/{{comment.user.file_name}}.jpg"/>
+                        <div>
+                        <div class="username">{{comment.user.user_name}}.</div>
+                        <div class"comment-text">{{comment.text_field}}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+               
             </div>
         </div>
     </div>
