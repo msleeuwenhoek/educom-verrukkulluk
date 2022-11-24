@@ -28,9 +28,9 @@
     </script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="wrapper">
 
-    <div class="row  hero-section">
+    <div class="hero-section">
         <div class="menu inner-section">
             <a href="index.php"><img class="menu-logo" src="assets/img/logo-v2.png"/></a>
             <div>
@@ -38,7 +38,7 @@
             <span class="menu-item"><a href="index.php?action=grocerylist">My grocery list</a></span>
             </div>
         </div> 
-        <div class="col-md-12 inner-section">
+        <div class=" inner-section">
         <div class="header">
             <a href="index.php"><img class="logo" src="assets/img/logo-v2.png"/></a>
             <div class="search-menu-section">
@@ -54,75 +54,71 @@
         </div>
     </div>
 
-    <div class="row inner-section content">
-        <div class="col-md-3 ">
-            <div class="row agenda content-section">
-                <div class="col-md-12">
-                <img class="header" src="./assets/img/verrukkulluk-agenda.png" alt="agenda"/>
-                <div class="agenda-item">
-                    <i class="fa fa-calendar"></i> 
-                    <div>
-                        <h3>Vegetarian cooking</h3>
-                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+    <div class="inner-section">
+        <div class="content-grid">
+            <div class="agenda-login-container"> 
+                <div class="agenda-container">
+                    <img class="header-image" src="./assets/img/verrukkulluk-agenda.png" alt="agenda"/>
+                    <div class="agenda-item">
+                        <i class="fa fa-calendar"></i> 
+                        <div>
+                            <h3>Vegetarian cooking</h3>
+                            <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <i class="fa fa-calendar"></i> 
+                        <div>
+                            <h3>Vegetarian cooking</h3>
+                            <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <i class="fa fa-calendar"></i> 
+                        <div>
+                            <h3>Vegetarian cooking</h3>
+                            <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <i class="fa fa-calendar"></i> 
+                        <div>
+                            <h3>Vegetarian cooking</h3>
+                            <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <i class="fa fa-calendar"></i> 
+                        <div>
+                            <h3>Vegetarian cooking</h3>
+                            <div>A workshop vegetarian cooking by Bob mcPhee.</div>
+                        </div>
                     </div>
                 </div>
-                <div class="agenda-item">
-                    <i class="fa fa-calendar"></i> 
-                    <div>
-                        <h3>Vegetarian cooking</h3>
-                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <i class="fa fa-calendar"></i> 
-                    <div>
-                        <h3>Vegetarian cooking</h3>
-                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <i class="fa fa-calendar"></i> 
-                    <div>
-                        <h3>Vegetarian cooking</h3>
-                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
-                    </div>
-                </div>
-                <div class="agenda-item">
-                    <i class="fa fa-calendar"></i> 
-                    <div>
-                        <h3>Vegetarian cooking</h3>
-                        <div>A workshop vegetarian cooking by Bob mcPhee.</div>
-                    </div>
-                </div>
+                <div class="login-container">
+                    <img class="header-image" src="./assets/img/verrukkulluk-login.png" alt="Login"/>
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" >
+                        </div>
+                        <button type="submit" class="button login-btn"><a href="index.php?action=login">Login</a></button>
+                    </form>
                 </div>
             </div>
-            <div class="row login content-section">
-            <div class="col-md-12 ">
-                <img class="header" src="./assets/img/verrukkulluk-login.png" alt="Login"/>
-                <form>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+            <div class="recipes-container">
+                {%  block content %}
+                {%  endblock %}
             </div>
-            </div>
-        </div>
-        <div class="col-md-9 content-section ">
-            
-            {%  block content %}
-            {%  endblock %}
         </div>
     </div>
 
-
-    <div class="row footer">
-        <div class="col-md-9 inner-section">
+    <div class="footer">
+        <div class="inner-section">
 
             <img class="logo" src="./assets/img/verrukkulluk-pay-off.png" alt="verrukkulluk logo"/>
             <div>
@@ -134,6 +130,7 @@
             </div>
         </div>
     </div>
+
 
 
 
