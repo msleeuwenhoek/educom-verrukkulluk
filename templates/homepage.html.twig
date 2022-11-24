@@ -24,11 +24,11 @@
                 </div>
             </div>
             <div class="button-stats-container">       
-                <button class="red-btn button"><a href="index.php?recipe_id={{recipe.recipe.id}}&action=detail">Get started!</a></button>
+                <button class="red-btn button get-started-btn"><a href="index.php?recipe_id={{recipe.recipe.id}}&action=detail">Get started!</a></button>
                 <span>
                 <span class="recipe-stats"><i class="fa fa-user"></i> 4</span>
                 <span class="recipe-stats"><i class="fa fa-euro-sign"></i> {{recipe.total_price}}</span>
-                <span class="recipe-stats"><i class="fa fa-fire"></i> ?</span>
+                <span class="recipe-stats"><i class="fa fa-fire"></i> {{recipe.calories}}</span>
                 </span>
             </div>
            

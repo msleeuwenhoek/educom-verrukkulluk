@@ -51,6 +51,7 @@ class recipe
         $totalPrice = $this->calculateTotalPrice($ingredients);
         $kitchen = $this->selectKitchenType($recipe['kitchen_id']);
         $type = $this->selectKitchenType($recipe['type_id']);
+        $calories = $this->calculateTotalCalories($ingredients);
 
         if (isset($current_user)) {
             $isFavorite = $this->checkIfFavorite($recipe['id'], $current_user['id']);
@@ -58,7 +59,7 @@ class recipe
             $isFavorite = false;
         }
         // Returning all associated data
-        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type);
+        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type, 'calories' => $calories);
     }
 
     private function selectIngredients($recipe_id)
@@ -112,6 +113,23 @@ class recipe
         }
         $totalPrice = round(array_sum($ingredientPrices), 2);
         return $totalPrice;
+    }
+
+    private function calculateTotalCalories($ingredients)
+    {
+        $ingredientCalories = array();
+        foreach ($ingredients as $ingredient) {
+            if ($ingredient['article']['unit'] === "pieces") {
+                $ingredientCalorie = $ingredient['article']['calories'] * $ingredient['amount'];
+            } elseif ($ingredient['article']['unit'] === "kilo") {
+                $ingredientCalorie = $ingredient['article']['calories'] * 10 * $ingredient['amount'];
+            } else {
+                $ingredientCalorie = $ingredient['article']['calories'] / 100 * $ingredient['amount'];
+            }
+            $ingredientCalories[] = $ingredientCalorie;
+        }
+        $totalCalories = round(array_sum($ingredientCalories));
+        return $totalCalories;
     }
 
     private function selectKitchenType($kitchen_type_id)
