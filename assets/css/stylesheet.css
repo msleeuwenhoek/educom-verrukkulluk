@@ -37,7 +37,8 @@ h6 {
 }
 
 h1 {
-  font-size: 52px;
+  font-size: 60px;
+  color: var(--darker-green);
 }
 
 h2 {
@@ -133,6 +134,10 @@ body {
   font-size: 28px;
 }
 
+.red-icon {
+  color: var(--lighter-red);
+}
+
 /** HERO SECTION **/
 .hero-section {
   min-height: 92vh;
@@ -160,10 +165,6 @@ body {
 .header .search-menu-section {
   display: flex;
   align-items: flex-start;
-}
-.header .search-input .search-icon {
-  color: red;
-  position: absolute;
 }
 
 .header input {
@@ -280,9 +281,6 @@ body {
 .recipe-stats {
   padding: 0.4rem;
 }
-.recipe-stats i {
-  color: var(--lighter-red);
-}
 
 /** DETAIL SECTION **/
 .detail-content {
@@ -316,7 +314,7 @@ body {
   padding: 2rem;
 }
 
-.detail-container img {
+.main-details-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -431,19 +429,19 @@ body {
   align-items: center;
   padding-block: 1rem;
 }
-.ingredient-container img {
+.article-img {
   width: 150px;
   height: 120px;
   object-fit: cover;
 }
 
-.ingredient-container .name,
+.article-name,
 .ingredient-container .amount {
   color: var(--darker-green);
   font-family: var(--heading);
 }
 
-.ingredient-container .name {
+.article-name {
   font-size: 32px;
 }
 
@@ -507,4 +505,72 @@ body {
 .footer img.header {
   width: 150px;
   padding-bottom: 2rem;
+}
+
+/** GROCERY LIST **/
+.groceries-container {
+  height: 100%;
+  margin-left: 4rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.455);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scrollable-groceries {
+  max-height: 900px;
+  overflow: auto;
+}
+
+.grocery-container {
+  display: flex;
+  margin-block: 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grocery-info {
+  display: flex;
+  max-width: 600px;
+}
+.edit-grocery {
+  display: flex;
+  align-items: center;
+}
+
+.edit-grocery span,
+.edit-grocery input {
+  margin-left: 2rem;
+}
+
+.grocery-container .grocery-text {
+  max-width: 50%;
+}
+
+.groceries-container input {
+  width: 50px;
+  text-align: center;
+  color: var(--darker-green);
+  border: solid 1px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+}
+
+.groceries-total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grocery-total,
+.delete-grocerylist {
+  margin-inline: 2rem;
+}
+
+.delete-grocery {
+  font-size: 24px;
+}
+
+.total-header {
+  color: var(--darker-red);
 }

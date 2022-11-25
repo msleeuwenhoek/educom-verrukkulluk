@@ -15,9 +15,9 @@
             <div class="main-details">
                 <div>
                     <div>
-                        <span class="recipe-stats"><i class="fa fa-user"></i> 4</span>
-                        <span class="recipe-stats"><i class="fa fa-euro-sign"></i> {{data.total_price}}</span>
-                        <span class="recipe-stats"><i class="fa fa-fire"></i> {{data.calories}}</span>
+                        <span class="recipe-stats"><i class="fa fa-user red-icon"></i> 4</span>
+                        <span class="recipe-stats"><i class="fa fa-euro-sign red-icon"></i> {{data.total_price}}</span>
+                        <span class="recipe-stats"><i class="fa fa-fire red-icon"></i> {{data.calories}}</span>
                     </div>
                     <div class="title-rating-container">
                         <h2>{{ data.recipe.title }}</h2>
@@ -70,9 +70,9 @@
                 <div class="scrollable">
                 {% for ingredient in data.ingredients %}
                 <div class="ingredient-container">
-                    <img src="assets/img/{{ingredient.article.file_name}}.jpg"/>
+                    <img class="article-img" src="assets/img/{{ingredient.article.file_name}}.jpg"/>
                     <div>
-                        <div class="name">{{ingredient.article.name}}</div>
+                        <div class="article-name">{{ingredient.article.name}}</div>
                         <p>{{ingredient.article.description}}</p>
                         <div><span class="amount">Hoeveelheid: </span>{{ingredient.amount}} {{ingredient.article.unit}}</div>
                     </div>

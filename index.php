@@ -21,8 +21,10 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 require_once("lib/database.php");
 require_once("lib/recipe.php");
+require_once("lib/grocery.php");
 $db = new database();
 $recipe = new recipe($db->getConnection());
+$groceries = new grocery($db->getConnection());
 
 
 
@@ -52,6 +54,12 @@ switch ($action) {
             $data = $recipe->selectRecipe($recipe_id);
             $template = 'detail.html.twig';
             $title = "detail pagina";
+            break;
+        }
+    case "groceries": {
+            $data = $groceries->selectGroceries($_SESSION['user_id']);
+            $template = 'groceries.html.twig';
+            $title = "grocery list";
             break;
         }
 }

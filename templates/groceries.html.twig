@@ -1,0 +1,41 @@
+{% extends "main.html.twig" %}
+
+{% block header %}
+  
+        <img class="hero-image"src="assets/img/hero-image.jpg">
+    
+{% endblock %}
+
+{% block content %}
+  <div class="groceries-container">
+    <div>
+        <h1>My groceries</h1>
+        <div class="scrollable-groceries">
+            {% for grocery in data.groceries %}
+                <div class="grocery-container">
+                    <div class="grocery-info">
+                        <img class="article-img" src="assets/img/{{grocery.article.file_name}}.jpg"/>
+                        <div class="grocery-text">
+                            <div class="article-name">{{grocery.article.name}}</div>
+                            <p>{{grocery.article.description}}</p>
+                        </div> 
+                    </div>
+                    <div class="edit-grocery">
+                        <input type="text"value="{{grocery.amount}}"></input>
+                        <span><i class="fa fa-euro-sign red-icon"></i> {{grocery.article.price}}</span>
+                        <span><i class="fa fa-trash red-icon delete-grocery"></i></span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="groceries-total-container">
+        <h2 class="total-header">Total</h2>
+        <span>
+            <span class="grocery-total"><i class="fa fa-euro-sign red-icon"></i> {{data.total_price}} </span>
+            <span class="delete-grocery"><i class="fa fa-trash red-icon"></i></span>
+        </span>
+    </div>
+  </div>
+    
+{% endblock %}
