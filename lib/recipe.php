@@ -6,7 +6,6 @@ require_once 'user.php';
 require_once 'kitchen_type.php';
 
 
-
 class recipe
 {
     private $connection;
@@ -57,6 +56,17 @@ class recipe
             $isFavorite = $this->checkIfFavorite($recipe['id'], $current_user['id']);
         } else {
             $isFavorite = false;
+        }
+
+
+
+
+        if (isset($_POST['favorite_action'])) {
+            if ($_POST['favorite_action'] == 'remove-favorite') {
+                $this->deleteFavorite($_POST['favorited_recipe_id'], $_SESSION['user_id']);
+            } else if ($_POST['favorite_action'] == 'add-favorite') {
+                $this->addFavorite($_POST['favorited_recipe_id'], $_SESSION['user_id']);
+            }
         }
         // Returning all associated data
         return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type, 'calories' => $calories);
@@ -137,5 +147,16 @@ class recipe
         $kitchenTypeModel = new kitchen_type($this->connection);
         $kitchen_type = $kitchenTypeModel->selectKitchenTypeById($kitchen_type_id);
         return $kitchen_type;
+    }
+
+    private function addFavorite($recipe_id, $user_id)
+    {
+        $recipeInfoModel = new recipeInfo($this->connection);
+        $recipeInfoModel->addFavorite($recipe_id, $user_id);
+    }
+    private function deleteFavorite($recipe_id, $user_id)
+    {
+        $recipeInfoModel = new recipeInfo($this->connection);
+        $recipeInfoModel->deleteFavorite($recipe_id, $user_id);
     }
 }

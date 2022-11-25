@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['user_id'] = 1;
+
 
 //// Allereerst zorgen dat de "Autoloader" uit vendor opgenomen wordt:
 require_once("./vendor/autoload.php");

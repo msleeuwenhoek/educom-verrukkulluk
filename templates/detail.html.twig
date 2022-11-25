@@ -21,7 +21,17 @@
                     </div>
                     <div class="title-rating-container">
                         <h2>{{ data.recipe.title }}</h2>
-                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                        <span class="rating">
+                        {% set k = 5 %}
+                        {% for i in range (1,k)%}
+                            {% if i <= data.rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+
+                        {% endfor %}
+                        </span>
                     </div>
                     <div class="kitchen-type-container">
                         <span>
@@ -39,7 +49,12 @@
                 <div>
                     <div class="button-favorite-container">
                         <button class="red-btn button"><a href="index.php?action=grocerylist">Add to grocerylist</a></button>
-                        <i class="fa fa-heart"></i>
+                        {% if data.isFavorite %}
+                        <i class="fas fa-heart favorite-btn" data-bs-toggle="popover" data-bs-content="popover" data-bs-placement="top"></i>
+                        {% else %}
+                        <i class="far fa-heart favorite-btn" data-bs-toggle="popover" data-bs-content="popover" data-bs-placement="top"></i>
+
+                        {% endif %}
                     </div>
                 </div>
             </div>

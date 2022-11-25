@@ -8,11 +8,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" />
     <script src="https://kit.fontawesome.com/48acdf1f79.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="assets/jquery/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="assets/bootstrap/js/bootstrap.js"></script>
     <script>
     $(document).ready(function(){
+        // MENU FUNCTIONALITY
         $(".hamburger-menu-icon").click(function(){
             $(".menu").addClass("active-menu")
         })
@@ -22,6 +23,23 @@
                  $(".menu").removeClass("active-menu")
             }
             })
+
+        // FAVORITE FUNCTIONALITY
+        $(".favorite-btn").click(function(){
+           
+            if($(this).hasClass("far")){
+                $(this).removeClass("far"); 
+                var currentClasses = $(this).prop("class");
+               $(this).removeClass(currentClasses).addClass("fas" + " " + currentClasses );
+        
+            }
+            else if($(this).hasClass("fas")){
+                 $(this).removeClass("fas"); 
+                var currentClasses = $(this).prop("class");
+               $(this).removeClass(currentClasses).addClass("far" + " " + currentClasses);
+        
+            }
+        })
     })
             
 

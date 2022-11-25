@@ -128,6 +128,11 @@ body {
   padding: 10px 35px;
 }
 
+.favorite-btn {
+  color: var(--lighter-red);
+  font-size: 28px;
+}
+
 /** HERO SECTION **/
 .hero-section {
   min-height: 92vh;
@@ -265,7 +270,13 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.title-rating-container i {
+  color: var(--lighter-orange);
+}
 
+.rating {
+  cursor: pointer;
+}
 .recipe-stats {
   padding: 0.4rem;
 }

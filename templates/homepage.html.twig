@@ -18,7 +18,17 @@
                     
                     <div class="title-rating-container">
                         <h2>{{ recipe.recipe.title }}</h2>
-                        <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                        <span class="rating">
+                        {% set k = 5 %}
+                        {% for i in range (1,k)%}
+                            {% if i <= recipe.rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+
+                        {% endfor %}
+                        </span>
                     </div>
                     <p>{{ recipe.recipe.short_description }}</p>
                 </div>
