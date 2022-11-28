@@ -1,0 +1,50 @@
+{# Opnemen van de "Main" file #}
+{% extends "main.html.twig" %}
+
+{% block header %}
+  
+        <img class="hero-image"src="assets/img/hero-image.jpg">
+    
+{% endblock %}
+
+
+{% block content %}
+<div class="recipes"> 
+    {% for recipe in data %}
+        <div class="recipe-container">
+            <div>
+                <img class="recipe-image" src="./assets/img/{{ recipe.recipe.file_name }}.jpg" alt="{{ recipe.recipe.file_name }}" >   
+                <div class="recipe-info" >         
+                    
+                    <div class="title-rating-container">
+                        <h2>{{ recipe.recipe.title }}</h2>
+                        <span class="rating">
+                        {% set k = 5 %}
+                        {% for i in range (1,k)%}
+                            {% if i <= recipe.rating %}
+                                <i class="fas fa-star"  data-value="{{i}}"></i>
+                            {% else %}
+                                <i class="far fa-star"  data-value="{{i}}"></i>
+                            {% endif %}
+
+                        {% endfor %}
+                        </span>
+                    </div>
+                    <p>{{ recipe.recipe.short_description }}</p>
+                </div>
+            </div>
+            <div class="button-stats-container">       
+                <button class="red-btn button get-started-btn"><a href="index.php?recipe_id={{recipe.recipe.id}}&action=detail">Get started!</a></button>
+                <span>
+                <span class="recipe-stats"><i class="fa fa-user red-icon"></i> 4</span>
+                <span class="recipe-stats"><i class="fa fa-euro-sign red-icon"></i> {{recipe.total_price}}</span>
+                <span class="recipe-stats"><i class="fa fa-fire red-icon"></i> {{recipe.calories}}</span>
+                </span>
+            </div>
+           
+       </div>
+    {% endfor %}
+</div>
+    
+
+{% endblock %}

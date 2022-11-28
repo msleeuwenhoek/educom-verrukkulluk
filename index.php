@@ -48,7 +48,7 @@ if (isset($_POST['interaction'])) {
 switch ($action) {
 
     case "homepage": {
-            $data = $recipe->selectRecipes();
+            $data = $recipe->selectRecipes(null);
             $template = 'homepage.html.twig';
             $title = "homepage";
             break;
@@ -66,7 +66,6 @@ switch ($action) {
             $title = "grocery list";
             break;
         }
-
     case "addFavorite": {
 
             $recipe->addFavorite($_POST["recipe_id"], $_SESSION['user_id']);
@@ -81,6 +80,12 @@ switch ($action) {
             $recipe->updateRating($_POST['recipe_id'],  $_POST['rating'], $_SESSION['user_id']);
             $averageRating = $recipeInfo->calculateAverageRating($_POST['recipe_id']);
             $data = array('averageRating' => $averageRating);
+            break;
+        }
+    case "favorites": {
+            $title = "My favorites";
+            $data = $recipe->selectRecipes($_SESSION['user_id']);
+            $template = "favorites.html.twig";
             break;
         }
 }

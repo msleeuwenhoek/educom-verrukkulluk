@@ -15,11 +15,17 @@ class recipe
         $this->connection = $connection;
     }
 
-    public function selectRecipes()
+    public function selectRecipes($user_id)
     {
         $recipes = array();
         $updatedRecipes = array();
-        $sql = "SELECT * FROM recipe";
+        if ($user_id !== null) {
+            $sql = "SELECT * FROM recipe WHERE user_id = $user_id";
+        } else {
+            $sql = "SELECT * FROM recipe";
+        }
+
+
         $result = $this->connection->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $recipes[] = $row;
