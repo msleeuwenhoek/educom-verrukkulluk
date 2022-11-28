@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 2;
+$_SESSION['user_id'] = 3;
 
 
 //// Allereerst zorgen dat de "Autoloader" uit vendor opgenomen wordt:
@@ -67,9 +67,7 @@ switch ($action) {
             break;
         }
     case "addFavorite": {
-
             $recipe->addFavorite($_POST["recipe_id"], $_SESSION['user_id']);
-
             break;
         }
     case "deleteFavorite": {
@@ -88,6 +86,14 @@ switch ($action) {
             $template = "favorites.html.twig";
             break;
         }
+    case "addGroceries": {
+            $groceries->addRecipeGroceries($recipe_id, $_SESSION['user_id']);
+            $data = $groceries->selectGroceries($_SESSION['user_id']);
+
+            $template = 'groceries.html.twig';
+            $title = "grocery list";
+            break;
+        }
 }
 
 if ($action === "addFavorite" || $action === "deleteFavorite" || $action === "updateRating") {
@@ -98,8 +104,3 @@ if ($action === "addFavorite" || $action === "deleteFavorite" || $action === "up
     $template = $twig->load($template);
     echo $template->render(["title" => $title, "data" => $data]);
 }
-
-
-
-//echo '<pre>';
-//var_dump($data);

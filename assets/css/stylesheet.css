@@ -539,6 +539,10 @@ body {
   align-items: center;
 }
 
+.grocery-price {
+  min-width: 60px;
+}
+
 .edit-grocery span,
 .edit-grocery input {
   margin-left: 2rem;

@@ -1,6 +1,7 @@
 <?php
 require_once 'user.php';
 require_once 'article.php';
+require_once "recipe.php";
 
 class grocery
 {
@@ -78,5 +79,28 @@ class grocery
         }
         $totalPrice = round(array_sum($groceryPrices), 2);
         return $totalPrice;
+    }
+
+    public function addRecipeGroceries($recipe_id, $user_id)
+    {
+        $recipeModel = new recipe($this->connection);
+        $recipe = $recipeModel->selectRecipe($recipe_id);
+        foreach ($recipe['ingredients'] as $ingredient) {
+            $article_id = $ingredient['article']['id'];
+            $amount = $ingredient['amount'];
+
+
+
+            $sql = "SELECT * FROM grocery WHERE article_id = $article_id AND  user_id = $user_id";
+            $result = $this->connection->query($sql);
+            if ($result->num_rows < 1) {
+                $sql = "INSERT INTO grocery(id, user_id, article_id, amount) VALUES(NULL, $user_id, $article_id, $amount)";
+                mysqli_query($this->connection, $sql);
+            } else {
+                $current_grocery = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $sql = "UPDATE `grocery` SET `amount` = amount + 1 WHERE id = $current_grocery[id]";
+                mysqli_query($this->connection, $sql);
+            }
+        }
     }
 }
