@@ -156,4 +156,10 @@ class recipe
         $recipeInfoModel = new recipeInfo($this->connection);
         $recipeInfoModel->deleteFavorite($recipe_id, $user_id);
     }
+
+    public function updateRating($recipe_id, $rating, $user_id)
+    {
+        $recipeInfoModel = new recipeInfo($this->connection);
+        $recipeInfoModel->updateRating($recipe_id, $rating, $user_id);
+    }
 }

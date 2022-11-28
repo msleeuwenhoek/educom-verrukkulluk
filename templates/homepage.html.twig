@@ -22,9 +22,9 @@
                         {% set k = 5 %}
                         {% for i in range (1,k)%}
                             {% if i <= recipe.rating %}
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"  data-value="{{i}}"></i>
                             {% else %}
-                                <i class="far fa-star"></i>
+                                <i class="far fa-star"  data-value="{{i}}"></i>
                             {% endif %}
 
                         {% endfor %}

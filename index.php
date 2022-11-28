@@ -22,9 +22,11 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 require_once("lib/database.php");
 require_once("lib/recipe.php");
 require_once("lib/grocery.php");
+require_once("lib/recipe.php");
 $db = new database();
 $recipe = new recipe($db->getConnection());
 $groceries = new grocery($db->getConnection());
+$recipeInfo = new recipeInfo($db->getConnection());
 
 
 
@@ -75,9 +77,18 @@ switch ($action) {
             $recipe->deleteFavorite($_POST['recipe_id'], $_SESSION['user_id']);
             break;
         }
+    case "updateRating"; {
+            $recipe->updateRating($_POST['recipe_id'],  $_POST['rating'], $_SESSION['user_id']);
+            $averageRating = $recipeInfo->calculateAverageRating($_POST['recipe_id']);
+            $data = array('averageRating' => $averageRating);
+            break;
+        }
 }
 
-if ($action === "addFavorite" || $action === "deleteFavorite") {
+if ($action === "addFavorite" || $action === "deleteFavorite" || $action === "updateRating") {
+    header("Content-Type: application/json");
+    echo json_encode($data);
+    exit();
 } else {
     $template = $twig->load($template);
     echo $template->render(["title" => $title, "data" => $data]);

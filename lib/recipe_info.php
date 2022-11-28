@@ -76,7 +76,7 @@ class recipeInfo
         if (mysqli_query($this->connection, $sql)) {
             echo "Deleted from favorites";
         } else {
-            echo "Sorry, something went wrong. Try agian later";
+            echo "Sorry, something went wrong. Try again later";
         }
     }
 
@@ -102,5 +102,27 @@ class recipeInfo
             $updatedComments[] = $comment;
         }
         return $updatedComments;
+    }
+
+    public function updateRating($recipe_id, $rating, $user_id)
+    {
+        $sql = "SELECT * FROM recipe_info WHERE recipe_id = $recipe_id AND record_type='R'and user_id = $user_id";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows < 1) {
+            $sql = "INSERT INTO recipe_info(id, record_type, recipe_id, user_id, date, nummeric_field, text_field) VALUES(NULL, 'R', '$recipe_id', '$user_id', current_timestamp(), $rating, NULL)";
+            if (mysqli_query($this->connection, $sql)) {
+                echo "Added rating";
+            } else {
+                echo "Sorry, something went wrong. Try again later";
+            }
+        } else {
+            $previous_rating = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $sql = "UPDATE `recipe_info` SET `nummeric_field` = '$rating' WHERE id = $previous_rating[id]";
+            if (mysqli_query($this->connection, $sql)) {
+                echo "updated rating";
+            } else {
+                echo "Sorry, something went wrong. Try again later";
+            }
+        }
     }
 }

@@ -24,44 +24,79 @@
             }
             })
 
-        // FAVORITE FUNCTIONALITY
-        $(".favorite-btn").click(function(){
+            // RATING FUNCTIONALITY
+            $(".fa-star").click(function(){
+                
+                const value= $(this).attr('data-value');
 
-                if($(this).hasClass("far")){
-                    $.ajax({
-                    type: 'POST',
-                    url: 'index.php',
-                    data: { interaction: "addFavorite", recipe_id: "{{data.recipe.id}}"},
-                    success: function( msg ) {console.log(msg);
-                    },
-                    error: function(xhr, status, error) {
-                        // check status && error
-                    },
-                    dataType: 'text'
-                    });
-                    $(this).removeClass("far"); 
-                    var currentClasses = $(this).prop("class");
-                    $(this).removeClass(currentClasses).addClass("fas" + " " + currentClasses );
-            
-                }
-                else if($(this).hasClass("fas")){
-                    $.ajax({
-                    type: 'POST',
-                    url: 'index.php',
-                    data: { interaction: "deleteFavorite", recipe_id: "{{data.recipe.id}}"},
-                    success: function( msg ) {console.log(msg);
-                    },
-                    error: function(xhr, status, error) {
-                        // check status && error
-                    },
-                    dataType: 'text'
-                    });
-                    $(this).removeClass("fas"); 
-                    var currentClasses = $(this).prop("class");
-                $(this).removeClass(currentClasses).addClass("far" + " " + currentClasses);
-                }
+
+                $('.fa-star').each((index, elem)=>{
+                   
+                    $(elem).removeClass("fas");
+                    $(elem).removeClass("far");
+                    var currentClasses = $(elem).prop("class");
+                    const itemValue = $(elem).attr('data-value');
+                    if (itemValue <=value) {
+                        $(elem).removeClass(currentClasses).addClass("fas" + " " + currentClasses )
+                    }
+                    else {
+                        $(elem).removeClass(currentClasses).addClass("far"+ " " + currentClasses)
+                    }
+                })
+
+                 $.ajax({
+                        type: 'POST',
+                        url: 'index.php',
+                        data: { interaction: "updateRating", recipe_id: "{{data.recipe.id}}", rating: value},
+                        success: function( msg ) {console.log(msg);
+                        },
+                        error: function(xhr, status, error) {
+                            // check status && error
+                        },
+                        dataType: 'text'
+                        });
+
+            })
+        
+
+            // FAVORITE FUNCTIONALITY
+            $(".favorite-btn").click(function(){
+
+                    if($(this).hasClass("far")){
+                        $.ajax({
+                        type: 'POST',
+                        url: 'index.php',
+                        data: { interaction: "addFavorite", recipe_id: "{{data.recipe.id}}"},
+                        success: function( msg ) {console.log(msg);
+                        },
+                        error: function(xhr, status, error) {
+                            // check status && error
+                        },
+                        dataType: 'text'
+                        });
+                        $(this).removeClass("far"); 
+                        var currentClasses = $(this).prop("class");
+                        $(this).removeClass(currentClasses).addClass("fas" + " " + currentClasses );
+                
+                    }
+                    else if($(this).hasClass("fas")){
+                        $.ajax({
+                        type: 'POST',
+                        url: 'index.php',
+                        data: { interaction: "deleteFavorite", recipe_id: "{{data.recipe.id}}"},
+                        success: function( msg ) {console.log(msg);
+                        },
+                        error: function(xhr, status, error) {
+                            // check status && error
+                        },
+                        dataType: 'text'
+                        });
+                        $(this).removeClass("fas"); 
+                        var currentClasses = $(this).prop("class");
+                    $(this).removeClass(currentClasses).addClass("far" + " " + currentClasses);
+                    }
+            })
         })
-    })
             
 
     </script>
