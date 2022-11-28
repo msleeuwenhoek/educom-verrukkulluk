@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 3;
+$_SESSION['user_id'] = 2;
 
 
 //// Allereerst zorgen dat de "Autoloader" uit vendor opgenomen wordt:
