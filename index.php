@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 1;
+$_SESSION['user_id'] = 3;
 
 
 //// Allereerst zorgen dat de "Autoloader" uit vendor opgenomen wordt:
@@ -38,12 +38,14 @@ http://localhost/index.php?gerecht_id=4&action=detail
 
 $recipe_id = isset($_GET["recipe_id"]) ? $_GET["recipe_id"] : "";
 $action = isset($_GET["action"]) ? $_GET["action"] : "homepage";
+if (isset($_POST['interaction'])) {
+    $action = $_POST['interaction'];
+};
 
 
 switch ($action) {
 
     case "homepage": {
-
             $data = $recipe->selectRecipes();
             $template = 'homepage.html.twig';
             $title = "homepage";
@@ -62,16 +64,25 @@ switch ($action) {
             $title = "grocery list";
             break;
         }
+
+    case "addFavorite": {
+
+            $recipe->addFavorite($_POST["recipe_id"], $_SESSION['user_id']);
+
+            break;
+        }
+    case "deleteFavorite": {
+            $recipe->deleteFavorite($_POST['recipe_id'], $_SESSION['user_id']);
+            break;
+        }
 }
 
+if ($action === "addFavorite" || $action === "deleteFavorite") {
+} else {
+    $template = $twig->load($template);
+    echo $template->render(["title" => $title, "data" => $data]);
+}
 
-/// Onderstaande code schrijf je idealiter in een layout klasse of iets dergelijks
-/// Juiste template laden, in dit geval "homepage"
-$template = $twig->load($template);
-
-
-/// En tonen die handel!
-echo $template->render(["title" => $title, "data" => $data]);
 
 
 //echo '<pre>';

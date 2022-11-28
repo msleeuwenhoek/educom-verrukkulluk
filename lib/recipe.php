@@ -39,9 +39,11 @@ class recipe
         $recipe = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         // Checking if a user is logged in
+        $current_user = null;
         if (isset($_SESSION['user_id'])) {
             $current_user = $this->selectUser($_SESSION['user_id']);
         }
+
         // Retrieving associated data
         $ingredients = $this->selectIngredients($recipe['id']);
         $rating = $this->selectRating($recipe['id']);
@@ -52,7 +54,7 @@ class recipe
         $type = $this->selectKitchenType($recipe['type_id']);
         $calories = $this->calculateTotalCalories($ingredients);
 
-        if (isset($current_user)) {
+        if ($current_user !== null) {
             $isFavorite = $this->checkIfFavorite($recipe['id'], $current_user['id']);
         } else {
             $isFavorite = false;
@@ -61,15 +63,9 @@ class recipe
 
 
 
-        if (isset($_POST['favorite_action'])) {
-            if ($_POST['favorite_action'] == 'remove-favorite') {
-                $this->deleteFavorite($_POST['favorited_recipe_id'], $_SESSION['user_id']);
-            } else if ($_POST['favorite_action'] == 'add-favorite') {
-                $this->addFavorite($_POST['favorited_recipe_id'], $_SESSION['user_id']);
-            }
-        }
+
         // Returning all associated data
-        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type, 'calories' => $calories);
+        return array('recipe' => $recipe, 'ingredients' => $ingredients, 'rating' => $rating, 'preparations' => $preparations, 'comments' => $comments, 'isFavorite' => $isFavorite, 'total_price' => $totalPrice, 'kitchen' => $kitchen, 'type' => $type, 'calories' => $calories, 'current_user' => $current_user);
     }
 
     private function selectIngredients($recipe_id)
@@ -149,12 +145,13 @@ class recipe
         return $kitchen_type;
     }
 
-    private function addFavorite($recipe_id, $user_id)
+    public function addFavorite($recipe_id, $user_id)
     {
         $recipeInfoModel = new recipeInfo($this->connection);
         $recipeInfoModel->addFavorite($recipe_id, $user_id);
     }
-    private function deleteFavorite($recipe_id, $user_id)
+
+    public function deleteFavorite($recipe_id, $user_id)
     {
         $recipeInfoModel = new recipeInfo($this->connection);
         $recipeInfoModel->deleteFavorite($recipe_id, $user_id);
