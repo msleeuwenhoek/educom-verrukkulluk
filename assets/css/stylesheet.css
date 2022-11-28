@@ -275,7 +275,7 @@ body {
   color: var(--lighter-orange);
 }
 
-.rating {
+.clickable-star {
   cursor: pointer;
 }
 .recipe-stats {
